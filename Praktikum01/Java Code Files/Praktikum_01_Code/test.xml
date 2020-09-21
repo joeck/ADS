@@ -1,0 +1,17 @@
+<root>
+    <note>
+        <to>Tove</to>
+        <from>Jani</from>
+        <heading>Reminder</heading>
+        <to>To</to>
+        <body>Don't forget me this weekend!</body>
+    </note>
+    <Scans  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Stop = "false">
+        <ScanListe>
+            <Scan Code="-1" Stop = "false">IV</Scan>
+            <Scan Code="-4" Stop = "false">6666000000001</Scan>
+            <Scan Code="-30" Stop = "false" WaitTime = "500">15</Scan>
+            <Scan Code="-1" Stop = "false"  Close = "true">IVENDE</Scan>
+        </ScanListe>
+    </Scans>
+</root>
