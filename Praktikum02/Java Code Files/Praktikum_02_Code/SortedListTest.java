@@ -1,5 +1,6 @@
 package Praktikum_02_Code;
 
+import javafx.collections.transformation.SortedList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -90,7 +91,7 @@ public class SortedListTest {
     @Test
     public void testMixed() {
         list.clear();
-        List list2 = new LinkedList();
+        List list2 = new MySortedList();
         for (int i = 0; i < 100; i++) {
             Character c = (char) ('A' + (Math.random()*26));
             int op = (int)(Math.random()*2);
