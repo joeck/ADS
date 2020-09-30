@@ -23,6 +23,8 @@ public class BracketServerTest {
 		test("[(])",false);
 		test("[(3 +3)* 35 +3]* {3 +2}",true);
 		test("[({3 +3)* 35} +3]* {3 +2}",false);
+		test("(",false);
+		test(")",false);
 	}
 
 

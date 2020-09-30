@@ -6,8 +6,6 @@ import java.util.List;
 public class BracketServer {
 
     ListStack<String> stack = new ListStack<>();
-    List<String> openingBrackets = List.of("(", "{", "[");
-    List<String> closingBrackets = List.of(")", "}", "]");
     HashMap<String, String> brackets = new HashMap<>();
 
     public BracketServer(){
@@ -29,7 +27,7 @@ public class BracketServer {
                    stack.push(curr);
            } else if ("*".equals(curr) && ">".equals(next)) {
                if(!"<*".equals(stack.pop())) return false;
-               ++c; //skip *
+               ++c; //skip * symbol
            } else if (brackets.containsValue(curr)){
                if (!(curr).equals(brackets.get(stack.pop()))) return false;
            }
