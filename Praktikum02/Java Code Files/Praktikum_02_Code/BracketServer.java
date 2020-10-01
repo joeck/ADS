@@ -24,13 +24,13 @@ public class BracketServer {
                 stack.push("<*");
                 ++c; //skip *
             } else if(brackets.containsKey(curr)){
-                   stack.push(curr);
-           } else if ("*".equals(curr) && ">".equals(next)) {
-               if(!"<*".equals(stack.pop())) return false;
-               ++c; //skip * symbol
-           } else if (brackets.containsValue(curr)){
-               if (!(curr).equals(brackets.get(stack.pop()))) return false;
-           }
+                stack.push(curr);
+            } else if ("*".equals(curr) && ">".equals(next)) {
+                if(!"<*".equals(stack.pop())) return false;
+                ++c; //skip * symbol
+            } else if (brackets.containsValue(curr)){
+                if (!(curr).equals(brackets.get(stack.pop()))) return false;
+            }
         }
         return stack.isEmpty();
     }
