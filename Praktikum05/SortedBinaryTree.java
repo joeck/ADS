@@ -85,9 +85,9 @@ public class SortedBinaryTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     protected int calcSize(TreeNode p) {
-        CountingVisitor v = new CountingVisitor();
-        traversal(p).inorder(v);
-        return v.getCounter();
+        List count = new ArrayList();
+        traversal(p).inorder((obj) -> {count.add(obj);});
+        return count.size();
     }
 
     public int height() {
