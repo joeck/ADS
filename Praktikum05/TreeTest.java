@@ -15,6 +15,11 @@ public class TreeTest {
     }
 
     @Test
+    public void testSize(){
+        assertEquals(4,tree.size());
+    }
+
+    @Test
     public void testInorder() {
         Visitor<String> v = new MyVisitor<String>();
         tree.traversal().inorder(v);
@@ -54,6 +59,11 @@ public class TreeTest {
         Visitor<String> v = new MyVisitor<String>();
         tree.traversal().interval("0", "1", v);
         assertEquals("interval", "", v.toString());
+    }
+
+    @Test
+    public void testHeight(){
+        assertEquals(3, tree.height());
     }
 }
 

@@ -69,19 +69,25 @@ public class SortedBinaryTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     public Traversal<T> traversal() {
-        // to be implemented
+        return new TreeTraversal<>(root);
+    }
+
+    public Traversal<T> traversal(TreeNode<T> root) {
         return new TreeTraversal<>(root);
     }
 
     protected int calcHeight(TreeNode<T> node) {
         // to be implemented
-        return 0;
+        int maxLevel = 0;
+        if(node.right != null) maxLevel = Math.max(maxLevel, calcHeight(node.right));
+        if(node.left != null) maxLevel = Math.max(maxLevel, calcHeight(node.left));
+        return maxLevel + 1;
     }
 
-
     protected int calcSize(TreeNode p) {
-        // to be implemented
-        return 0;
+        CountingVisitor v = new CountingVisitor();
+        traversal(p).inorder(v);
+        return v.getCounter();
     }
 
     public int height() {
