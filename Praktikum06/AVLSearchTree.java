@@ -46,6 +46,20 @@ public class AVLSearchTree<T extends Comparable<T>> extends SortedBinaryTree<T> 
         }
     }
 
+    @Override
+    public boolean balanced() {
+        return (Math.abs(calcHeight(root.left) - calcHeight(root.right)) < 2 );
+    }
+
+    private boolean balanced(TreeNode<T> node){
+        if (node == null){
+            return true;
+        } else {
+            boolean areMyChildrenBalanced = Math.abs(calcHeight(node.left) - calcHeight(node.right)) < 2;
+            return areMyChildrenBalanced && balanced(node.left) && balanced(node.right);
+        }
+    }
+
     /**
      * Internal method to insert into a subtree.
      * @param p the item to insert.
