@@ -3,8 +3,10 @@ import java.awt.*;
 public class LabyrinthServer implements CommandExecutor {
 
     final double SCALE = 10;
-    AdjListGraph<LabyrinthNode<String>, Edge<LabyrinthNode<String>>> labyrinth = new AdjListGraph<>(LabyrinthNode.class, Edge.class);
+    AdjListGraph<LabyrinthNode<Edge>, Edge<LabyrinthNode<Edge>>> labyrinth = new AdjListGraph<>(LabyrinthNode.class, Edge.class);
     GraphicsServer graphicsServer = new GraphicsServer();
+    LabyrinthNode<Edge> goal;
+    LabyrinthNode<Edge> start;
 
     private void drawPath(GraphicsServer g, String from, String to, boolean mouse) {
         double xh0 = from.charAt(0) - '0';
@@ -52,10 +54,43 @@ public class LabyrinthServer implements CommandExecutor {
         }
     }
 
+    private void solveLabyrinth(){
+        start = labyrinth.findNode("0-6");
+        goal = labyrinth.findNode("3-0");
+        search(start);
+        graphicsServer.setColor(Color.red);
+        drawPath(start);
+    }
+
+    private boolean search(LabyrinthNode<Edge> currentNode){
+        currentNode.setMarked(true);
+        if (currentNode == goal) return true;
+        for(Edge edge : currentNode.getEdges()){
+            LabyrinthNode next = (LabyrinthNode) edge.getDest();
+            if(!next.isMarked()){
+                if (search(next)) return true;
+            }
+        }
+        currentNode.setMarked(false);
+        return false;
+    }
+
+    private void drawPath(LabyrinthNode<Edge> currentNode){
+        if(currentNode == goal) return;
+        for(Edge edge : currentNode.getEdges()){
+            LabyrinthNode next = (LabyrinthNode) edge.getDest();
+            if (next.isMarked()){
+                drawPath(graphicsServer, currentNode.getName(), next.getName(), true);
+                drawPath(next);
+            }
+        }
+    }
+
     @Override
     public String execute(String command) throws Exception {
         setup();
         process(command);
+        solveLabyrinth();
         return graphicsServer.getTrace();
     }
 }
