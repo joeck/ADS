@@ -28,7 +28,12 @@ class DijkstraNode<E> extends Node<E> implements Comparable<DijkstraNode>  {
     }
 
     public int compareTo(DijkstraNode n) {
-        // TODO: implement
-        return 0;
+        int delta = 0;
+        if (this.dist < n.dist){
+            delta = -1;
+        } else if (this.dist > n.dist ){
+            delta = 1;
+        }
+        return delta;
     }
 }
