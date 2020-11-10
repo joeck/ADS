@@ -57,33 +57,24 @@ public class LabyrinthServer implements CommandExecutor {
     private void solveLabyrinth(){
         start = labyrinth.findNode("0-6");
         goal = labyrinth.findNode("3-0");
-        search(start);
         graphicsServer.setColor(Color.red);
-        drawPath(start);
+        search(start);
     }
 
     private boolean search(LabyrinthNode<Edge> currentNode){
         currentNode.setMarked(true);
         if (currentNode == goal) return true;
         for(Edge edge : currentNode.getEdges()){
-            LabyrinthNode next = (LabyrinthNode) edge.getDest();
+            LabyrinthNode<Edge> next = (LabyrinthNode<Edge>) edge.getDest();
             if(!next.isMarked()){
-                if (search(next)) return true;
+                if (search(next)){
+                    drawPath(graphicsServer, currentNode.getName(), next.getName(), true);
+                    return true;
+                }
             }
         }
         currentNode.setMarked(false);
         return false;
-    }
-
-    private void drawPath(LabyrinthNode<Edge> currentNode){
-        if(currentNode == goal) return;
-        for(Edge edge : currentNode.getEdges()){
-            LabyrinthNode next = (LabyrinthNode) edge.getDest();
-            if (next.isMarked()){
-                drawPath(graphicsServer, currentNode.getName(), next.getName(), true);
-                drawPath(next);
-            }
-        }
     }
 
     @Override
