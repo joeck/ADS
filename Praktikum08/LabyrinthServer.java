@@ -2,8 +2,10 @@ import java.awt.*;
 
 public class LabyrinthServer implements CommandExecutor {
 
+    // Aufgabe 1) 1, 3, 8, 2, 5, 9, 10, 4, 6, 7
+
     final double SCALE = 10;
-    AdjListGraph<LabyrinthNode<Edge>, Edge<LabyrinthNode<Edge>>> labyrinth = new AdjListGraph<>(LabyrinthNode.class, Edge.class);
+    AdjListGraph<LabyrinthNode<Edge>, Edge<LabyrinthNode>> labyrinth = new AdjListGraph<>(LabyrinthNode.class, Edge.class);
     GraphicsServer graphicsServer = new GraphicsServer();
     LabyrinthNode<Edge> goal;
     LabyrinthNode<Edge> start;
