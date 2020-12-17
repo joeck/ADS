@@ -1,0 +1,14 @@
+Winterthur Zuerich 25
+Zuerich Bern 126
+Zuerich Genf 277
+Zuerich Luzern 54
+Zuerich Chur 121
+Zuerich Berikon 16
+Bern Genf 155
+Genf Lugano 363
+Lugano Luzern 206
+Lugano Chur 152
+Chur Luzern 146
+Luzern Bern 97
+Bern Berikon 102
+Luzern Berikon 41

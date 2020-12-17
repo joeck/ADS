@@ -1,0 +1,60 @@
+A1)
+
+AUSTAUSCH – AUFBAUSCH
+
+1. update(s -> f)
+2. update(z -> b)
+
+BARBAREN – BARBARA
+
+1. update(e -> a)
+2. delete(a)
+
+COCACOLA – COCAINA
+
+1. delete(c)
+2. update(o -> i)
+3. update(l -> n)
+
+A2)
+a)
+
+^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!$)|$)){4}$
+
+# Beschreibung
+(
+  [0-9]         # 0-9
+  |             # or
+  [1-9][0-9]    # 10-99
+  |             # or
+  1[0-9][0-9]   # 100-199
+  |             # or
+  2[0-4][0-9]   # 200-249
+  |             # or
+  25[0-5]       # 250-255
+)
+(\.(?!$)|$))    # sicherstellen, dass IPv4 nicht mit einem Punkt endet
+{4}             # 4 Mal
+
+b)
+^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$
+
+Lokale-Teil
+    lateinische Groß- und Kleinbuchstaben A bis Z und a bis z
+    Ziffern 0 bis 9
+    Erlauben Punkt (.), Unterstrich (_) und Bindestrich (-)
+    Punkt (.) ist nicht das erste oder letzte Zeichen
+    Punkt (.) erscheint nicht hintereinander, z.B. mkyong..yong@example.com ist nicht erlaubt
+    Max 64 Zeichen
+
+Im E-Mail-Lokalteil sind viele Sonderzeichen wie #$%&'*+-/=? technisch gültig, aber die meisten Mailserver oder Webanwendungen akzeptieren nicht alle davon.
+Diese E-Mail-Regex akzeptiert nur den allgemeinen Punkt (.), den Unterstrich (_) und den Bindestrich (-).
+
+Domänen-Teil
+
+    lateinische Groß- und Kleinbuchstaben A bis Z und a bis z
+    Ziffern 0 bis 9
+    der Bindestrich (-) ist nicht das erste oder letzte Zeichen
+    Punkt (.) ist nicht das erste oder letzte Zeichen
+    Punkt (.) erscheint nicht nacheinander
+    Top Level Domain min 2 Zeichen

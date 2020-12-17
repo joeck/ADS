@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'ch.zhaw.ads.ExBox'
+
+
+group 'ch.zhaw.ads'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('junit:junit:4.13')
+}
+
+
+class PraktikumDateCalc {
+    public static String generatePraktikumNummer() {
+        Calendar semesterStartDate = Calendar.getInstance();
+        Calendar currentDate = Calendar.getInstance();
+
+        semesterStartDate.clear();
+        semesterStartDate.set(2020, 8, 17);
+
+        long diff =  currentDate.getTimeInMillis() - semesterStartDate.getTimeInMillis();
+
+        float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+
+        int tage = (int) dayCount;
+        int praktikumNumber = (int) (tage / 7 + 1);
+        String prNummer = String.valueOf(praktikumNumber);
+        if (praktikumNumber < 10) prNummer = "0" + prNummer;
+        return prNummer;
+    }
+}
+
+task createZip(type: Zip, group: "Abgabe Praktikum", description: "Archives sources in a zip file") {
+    from "src"
+    archiveFileName = "Praktikum_${PraktikumDateCalc.generatePraktikumNummer()}-rhombtim.zip"
+}

@@ -1,0 +1,15 @@
+Start bei   Node 1
+            dann 3
+            dann 8
+            dann 1
+            dann 8
+            dann 2
+            dann 5
+            dann 8 -- schon besucht --> backtrack bis 3 (Zyklus)
+            dann 9
+            dann 10 -- fertig --> backtrack bis 1
+            dann 4
+            dann 6
+            dann 7
+            dann 4 -- schon besucht --> backtrack bis 1 (Zyklus)
+            dann 7 --> fertig
