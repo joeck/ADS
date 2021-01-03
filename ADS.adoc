@@ -1,0 +1,253 @@
+= ADS Zusammenfassung
+Joël Plambeck <plambjoe@students.zhaw.ch>
+:toc:
+:icons: font
+:imagesdir: img
+
+== Eigenschaften von Algorithmen
+
+[horizontal]
+Determiniertheit:: Identische Eingabe führen stets zu identischen Ergebnissen
+Determinismus:: Ablauf des Verfahrens ist an jedem Punkt fest vorgeschrieben
+Terminierung:: Für jede Eingabe liegt das Ergebnis nach endlichen vielen Schritten vor
+Effizienz:: "Wirtschaftlichkeit" des Aufwands relativ zu einem vorgegebenen Massstab (Laufzeit, Speicherplatzverbrauch)
+
+image:Onotation.png[O-notation, 250]
+image:OnotBsp.png[O-notation Beispiel, 250]
+
+== Abstrakte Datentypen, Stacks, Queues
+
+=== Abstrakte Datentypen (ADT)
+
+[horizontal]
+Schnittstelle:: Definition einer Schnittstelle mittels Zugriffsmethode
+Implementation:: Kann verändert werden ohne von aussen zu merken -> information hiding
+
+Klassen und interfaces in Java
+
+=== Stacks, List und Queues
+|===
+|Stacks | List | Queue
+
+|image:stack.png[Stack] | image:list.png[List] |image:queue.png[Queue]
+
+|===
+
+=== Stacks
+
+[cols="6,4a", frame="none", grid="none"]
+|===
+|Der Stack ist eine Datenstruktur, die Objekte als Stapel speichert.
+|image:stack.png[Stack, 250]
+|===
+
+== Listen
+
+== Generics
+
+Set:: ungeordnete Menge (ADT) ohne Duplikate
+
+
+== Rekursion
+
+kuze und leicht verständliche Programmierung, kann jedoch weniger effizient sein wegen overhead bei methodenaufruf.
+
+.Welche Position in Schlange
+[cols="2*a", grid="none", frame="none"]
+|===
+|image:recursive1.png[Rekursion Beispiel, 300]
+|image:recursive2.png[Rekursion Beispiel, 300]
+|===
+
+=== Endrekursion
+
+Endrekursion oder tail recursion sind so definiert, dass der rekursive Aufruf die letze Aktion ist.
+
+Schleifen lassen sich in Endrekursion überführen
+
+image:SchleifeZuRekursion.png[Schleife zu Rekursion, 300]
+
+=== Rekursion mit Instruktionen
+
+[source, java]
+----
+void hinUndZurueckR() {
+    if (!vorn_frei()) {
+        kehrt();    
+    } else {
+        vor();
+        hinUndZurueckR();
+        vor();
+    }
+}
+----
+
+=== Rekursion mit Parameter
+
+[source, java]
+----
+void vorR(int anz) {
+    if ((anz> 0) && vorn_frei()) {
+        vor();
+        vorR(anz-1);
+    }
+}
+----
+
+== Bäume
+
+[cols="7,3a", frame="none", grid="none"]
+|===
+|Ein Baum ist *leer* oder er besteht aus einem Knoten mit keinem, einem oder mehreren disjunkten Teilbäumen.
+|image:baum.png[Baum]
+|===
+
+=== Eigenschaften
+* Alle Knoten sind Nachfolger/Child von genau einem Vorgänger/Parent (ausser root)
+* Knoten mit Nachfolger sind *innere Knoten*
+* Knoten ohne Nachfolger sind *Blattknoten*
+* *Geschwisterknoten* haben den gleichen Vorgänger/Parent
+* Es gibt immer nur 1 Pfad von jedem Knoten zum root
+* Die *Weglänge* ist die Anzahl Kanten denen wir folgen müssen
+* Die *Höhe/Tiefe* gibt an wie viele Ebenen der Baum hat (Anzahl Kanten + 1)
+* Das *Gewicht* ist die Anzahl Knoten des (Teil-)Baumes
+
+=== Binärbaum
+* *Voll* wenn keine Halbblätter
+* *Vollständig* wenn alle Blätter dieseleb Höhe haben und die Blätter linksbündig angeordnet
+
+Der Binärbaum hat maximal 2 Nachfolger
+
+==== Sortierter Binärbaum
+
+links: <=
+
+rechts: >
+
+.M wird gelöscht:
+image:sortBiBaumLoeschen.png[Sortierter binärbaum löschen, 300]
+
+
+=== Traversieren
+
+[cols="4*a"]
+|===
+|Preorder |Postorder | Inorder | Levelorder
+
+|
+. Visit
+. Process left
+. Process right
+
+|
+. Process left
+. Process right
+. Visit
+
+|
+. Process left
+. Visit
+. Process right
+
+|
+. Visit root
+. Visit root of left and right subtree
+. Process next level...
+|===
+
+=== Balancierte Bäume
+
+Vollständig balancierter Baum:: Ist ein Baum, bei dem, abgesehen von der untersten Ebenen, alle Ebenen vollständig besetzt sind.
+
+Balancierter Baum:: Ist ein Baum, der eine maximale Höhe von stem:[c_1 * log(n) + c_2]  garantiert.
+
+AVL-Baum:: Der AVL-Baum ist ein balancierter Baum, bei dem für jeden Knoten gilt, dass sich die Höhe der beiden Teilbäume um höchstens eins unterscheidet.
+
+==== Rotation
+
+[cols="2*a", grid="none", frame="none"]
+|===
+
+|image:AVLRot.png[AVL Einzelrotation]
+|image:AVLDoppRot.png[AVL Doppelrotation]
+
+|===
+
+=== B-Baum
+
+Ein B-Baum ist ein vollständig balancierter Baum. In der Ordnung n (n = max. Anzahl Kinder) enthält jeder Knoten, ausser der Wurzel, mindestens (n-1)/2 und höchstens n-1 Schlüssel.
+
+[cols="4*a"]
+|===
+|B-Baum | B-Baum einfügen | B-Baum löschen | B-Baum löschen mit Unterlauf
+
+|image:Bbaum.png[B-Baum]
+|image:BbaumEinf.png[B-Baum einfügen]
+|image:BbaumLoes.png[B-Baum löschen]
+|image:BbaumLoesUnt.png[B-Baum löschen]
+
+|===
+
+=== 2-3-4-Baum
+
+Ein 2-3-4-Baum ist ein Spezialfall des B-Baums, in dem jeder Knoten zwei, drei oder maximal vier Kinder besitzt (= Ordnung 4).
+
+* Gute Alternative zu AVL-Baum
+* Eher Memory als block-Speicher (da wenige Schlüssel)
+
+=== Rot-Schwarz-Braun Baum
+
+Ein Rot-Scharz-Baum ist ein Spezialfall des 2-3-4-Baums, bei welchem die Knoten mit 2 oder mehr Schlüsseln durch Binärbäume implementiert werden.
+
+* Kann durch färben der Kanten als Binärbaum implementiert werden
+
+== Graphen
+
+[cols="4*a"]
+|===
+
+|image:GraphAzyklisch.png[Azyklischer Graph]
+|image:GraphZyklisch.png[Zyklischer Graph]
+|image:GraphKomplett.png[Kompletter Graph]
+|image:GraphVerbunden.png[Verbundener Graph]
+|image:GraphDicht.png[Dichter Graph]
+|image:GraphDuenn.png[Dünner Graph]
+|image:GraphGerichtet.png[Gerichteter Graph]
+|image:GraphUngerichtet.png[Ungerichteter Graph]
+|image:GraphGewichtet.png[Gewichteter Graph]
+|image:GraphNetzwerk.png[Netzwerk]
+|===
+
+=== Graphen-Traversierung
+
+==== Kürzester Pfad
+
+[cols="3*a"]
+|===
+|image:KuerzesterPfad0.png[Kürzester Pfad] 
+|image:KuerzesterPfad.png[Kürzester Pfad]
+|image:KuerzesterPfad2.png[Kürzester Pfad]
+|===
+
+==== Dijkstra
+
+|===
+|image:Dijkstra1.png[Dijkstra] | image:Dijkstra2.png[Dijkstra]
+|===
+
+== Backtracking
+
+== Algorithmen Aufwand
+
+== Hashing
+
+== Sortieren
+
+== Speicherverwaltung
+
+== Simulated Annealing
+
+== Fragen
+
+lower bound wildcards:: ads_v3 s45. könnte nicht extends Rectangle das Selbe erzielen?`
+
