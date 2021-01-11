@@ -3,6 +3,7 @@ Joël Plambeck <plambjoe@students.zhaw.ch>
 :toc:
 :icons: font
 :imagesdir: img
+:stem: asciimath
 
 == Eigenschaften von Algorithmen
 
@@ -159,7 +160,7 @@ image:sortBiBaumLoeschen.png[Sortierter binärbaum löschen, 300]
 
 Vollständig balancierter Baum:: Ist ein Baum, bei dem, abgesehen von der untersten Ebenen, alle Ebenen vollständig besetzt sind.
 
-Balancierter Baum:: Ist ein Baum, der eine maximale Höhe von stem:[c_1 * log(n) + c_2]  garantiert.
+Balancierter Baum:: Ist ein Baum, der eine maximale Höhe von stem:[c_1 * log(n) + c_2] garantiert.
 
 AVL-Baum:: Der AVL-Baum ist ein balancierter Baum, bei dem für jeden Knoten gilt, dass sich die Höhe der beiden Teilbäume um höchstens eins unterscheidet.
 
