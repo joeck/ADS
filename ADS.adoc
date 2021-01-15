@@ -176,7 +176,7 @@ AVL-Baum:: Der AVL-Baum ist ein balancierter Baum, bei dem für jeden Knoten gil
 
 === B-Baum
 
-Ein B-Baum ist ein vollständig balancierter Baum. In der Ordnung n (n = max. Anzahl Kinder) enthält jeder Knoten, ausser der Wurzel, mindestens (n-1)/2 und höchstens n-1 Schlüssel.
+Ein B-Baum ist ein vollständig balancierter Baum. In der Ordnung n (n = max. Anzahl Kinder) enthält jeder Knoten, ausser der Wurzel, mindestens stem:[(n-1)/2] und höchstens stem:[n-1] Schlüssel.
 
 [cols="4*a"]
 |===
